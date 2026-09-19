@@ -1,13 +1,30 @@
-import { Review } from '../models/Review.js';
+import Joi from "joi";
+import { Review } from "../models/Review.js";
 
-// TODO: write a validation schema for create/update per README.md section 2.
+const objectId = Joi.string().hex().length(24);
+
+const createSchema = Joi.object({
+  courseCode: Joi.string().trim().required(),
+  rating: Joi.number().integer().min(1).max(5).required(),
+  comment: Joi.string().trim().allow("").optional(),
+  reviewedBy: objectId.optional(),
+});
+
+const updateSchema = Joi.object({
+  courseCode: Joi.string().trim(),
+  rating: Joi.number().integer().min(1).max(5),
+  comment: Joi.string().trim().allow(""),
+  reviewedBy: objectId,
+}).min(1);
 
 // GET /api/reviews
 // TODO: implement per README.md section 3.
 export async function getAllReviews(req, res, next) {
   try {
     // TODO
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 }
 
 // GET /api/reviews/:id
@@ -15,7 +32,9 @@ export async function getAllReviews(req, res, next) {
 export async function getReview(req, res, next) {
   try {
     // TODO
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 }
 
 // GET /api/reviews/summary?courseCode=CS101
@@ -23,7 +42,9 @@ export async function getReview(req, res, next) {
 export async function getCourseSummary(req, res, next) {
   try {
     // TODO
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 }
 
 // POST /api/reviews
@@ -41,7 +62,9 @@ export async function createReview(req, res, next) {
 export async function updateReview(req, res, next) {
   try {
     // TODO
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 }
 
 // DELETE /api/reviews/:id
@@ -49,5 +72,7 @@ export async function updateReview(req, res, next) {
 export async function deleteReview(req, res, next) {
   try {
     // TODO
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 }

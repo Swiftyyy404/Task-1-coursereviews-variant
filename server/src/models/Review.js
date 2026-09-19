@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-// TODO: define the Review schema per README.md section 1.
-
 const reviewSchema = new mongoose.Schema(
   {
     courseCode: { type: String, required: true },
@@ -13,7 +11,7 @@ const reviewSchema = new mongoose.Schema(
       validate: { validator: Number.isInteger, message: "gotta be an Integer my guy"},
     },
     comment: { type: String },
-    reviewedBy: { type: mongoose.Schema.Types.ObjectId, red: 'User'},
+    reviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   },
   { timestamps: true },
 );

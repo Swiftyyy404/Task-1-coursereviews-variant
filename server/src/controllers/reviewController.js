@@ -18,10 +18,11 @@ const updateSchema = Joi.object({
 }).min(1);
 
 // GET /api/reviews
-// TODO: implement per README.md section 3.
 export async function getAllReviews(req, res, next) {
   try {
-    // TODO
+    const filter = req.query.courseCode ? { courseCode: req.query.courseCode } : {};
+    const reviews = await Review.find(filter).populate('reviewedBy', 'name email');
+    res.json(reviews);
   } catch (err) {
     next(err);
   }
